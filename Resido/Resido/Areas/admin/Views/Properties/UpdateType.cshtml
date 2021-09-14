@@ -1,0 +1,38 @@
+﻿@model VmBase
+@{
+    ViewData["Title"] = "CreateCity";
+}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <h1 class="h3 mb-2 text-gray-800">Update Property Type</h1>
+
+                    <form asp-area="admin" asp-controller="properties" asp-action="updatetype" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" name="name" value="@Model.Type.Name">
+                            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

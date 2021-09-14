@@ -1,0 +1,375 @@
+﻿@model VmAgents
+@{
+    ViewData["Title"] = "SingleAgent";
+}
+
+<div class="image-cover page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+
+                <h2 class="ipt-title">Agent Detail</h2>
+                <span class="ipn-subtitle">@Model.SingleAgent.OwnerName From @Model.SingleAgent.City</span>
+
+            </div>
+        </div>
+    </div>
+</div>
+<section class="agent-page p-0 gray-simple">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="agency agency-list overlio-40">
+
+                    <div class="agency-avatar">
+                        <img src="~/Uploads/Images/@Model.SingleAgent.ProfileImage" alt="">
+                    </div>
+
+                    <div class="agency-content">
+                        <div class="agency-name">
+                            <h4><a>@Model.SingleAgent.OwnerName</a></h4>
+                            <span><i class="lni-map-marker"></i>@Model.SingleAgent.Adress</span>
+                        </div>
+
+                        <div class="agency-desc">
+                            <p>@Model.SingleAgent.About</p>
+                        </div>
+
+                        <div class="prt-detio">
+                            <span>@Model.SingleAgent.Properties.Count() Property</span>
+                        </div>
+
+                        <ul class="social-icons">
+                            @foreach (var item in Model.SingleAgent.SocialToMyProfs)
+                            {
+                                <li><a href="@item.Link"><i class="@item.SocialsMyProfile.Icon"></i></a></li>
+                            }
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="min gray-simple">
+    <div class="container">
+        <div class="row">
+
+            <!-- property main detail -->
+            <div class="col-lg-8 col-md-12 col-sm-12">
+
+                <!-- Single Block Wrap -->
+                <div class="block-wrap">
+
+                    <div class="block-header">
+                        <h4 class="block-title">Agent Info</h4>
+                    </div>
+
+                    <div class="block-body">
+                        <ul class="dw-proprty-info">
+                            <li><strong>Name</strong>Mr. @Model.SingleAgent.OwnerName</li>
+                            <li><strong>Email</strong>@Model.SingleAgent.Email</li>
+                            <li><strong>Phone</strong>@Model.SingleAgent.Phone</li>
+                            <li><strong>Address</strong>@Model.SingleAgent.Adress</li>
+                            <li><strong>City</strong>@Model.SingleAgent.City</li>
+                            <li><strong>Country</strong>@Model.SingleAgent.State</li>
+                            <li><strong>Zip Code</strong>@Model.SingleAgent.ZipCode</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Single Block Wrap -->
+                <div class="block-wraps">
+                    <div class="block-wraps-header">
+
+                        <div class="block-header">
+                            <ul class="nav nav-tabs customize-tab" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="rental-tab" data-bs-toggle="tab" href="#rental" role="tab" aria-controls="rental" aria-selected="true">Rent</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="month-tab" data-bs-toggle="tab" href="#month" role="tab" aria-controls="month" aria-selected="false">Monthly Rent</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="sale-tab" data-bs-toggle="tab" href="#sale" role="tab" aria-controls="sale" aria-selected="false">For Sale</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="block-body">
+                            <div class="tab-content" id="myTabContent">
+
+                                <div class="tab-pane fade show active" id="rental" role="tabpanel" aria-labelledby="rental-tab">
+                                    <div class="row">
+                                        @foreach (var item in Model.Properties_rent)
+                                        {
+                                            <!-- Single Property -->
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="property-listing property-2">
+
+                                                    <div class="listing-img-wrapper">
+                                                        <div class="list-img-slide">
+                                                            <div class="clicks">
+                                                                <div><img src="~/Uploads/Images/@item.MainImage" class="img-fluid mx-auto" alt="" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="listing-detail-wrapper">
+                                                        <div class="listing-short-detail-wrap">
+                                                            <div class="listing-short-detail">
+                                                                <span class="property-type">@item.PropertyStatus.Name</span>
+                                                                <h4 class="listing-name verified"><a asp-controller="properties" asp-action="details" asp-route-id="@item.Id" class="prt-link-detail">@item.Name</a></h4>
+                                                            </div>
+                                                            <div class="listing-short-detail-flex">
+                                                                <h6 class="listing-card-info-price">$@item.Price/day</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="price-features-wrapper">
+                                                        <div class="list-fx-features">
+                                                            <div class="listing-card-info-icon">
+                                                                <div class="inc-fleat-icon"><img src="~/image/bed.svg" width="13" alt="" /></div>@item.BedroomsCount.CountName Beds
+                                                            </div>
+                                                            <div class="listing-card-info-icon">
+                                                                <div class="inc-fleat-icon"><img src="~/image/bathtub.svg" width="13" alt="" /></div>@item.BathroomCount.CountName
+                                                            </div>
+                                                            <div class="listing-card-info-icon">
+                                                                <div class="inc-fleat-icon"><img src="~/image/move.svg" width="13" alt="" /></div>@item.AreaKv sqft
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="listing-detail-footer">
+                                                        <div class="footer-first">
+                                                            <div class="foot-location"><img src="assets/img/pin.svg" width="18" alt="" />@item.Adress, @item.CityOfProperty.Name</div>
+                                                        </div>
+                                                        <div class="footer-flex">
+                                                            <a asp-controller="properties" asp-action="details" asp-route-id="@item.Id" class="prt-view">View</a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- End Single Property -->
+                                        }
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                                            <a asp-controller="properties" asp-action="index" class="btn btn-theme-light-2 rounded">All Properties</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="sale-tab">
+                                    <div class="row">
+                                        @foreach (var item in Model.Properties_sale)
+                                        {
+                                            <!-- Single Property -->
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="property-listing property-2">
+
+                                                    <div class="listing-img-wrapper">
+                                                        <div class="list-img-slide">
+                                                            <div class="clicks">
+                                                                <div><img src="~/Uploads/Images/@item.MainImage" class="img-fluid mx-auto" alt="" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="listing-detail-wrapper">
+                                                        <div class="listing-short-detail-wrap">
+                                                            <div class="listing-short-detail">
+                                                                <span class="property-type">@item.PropertyStatus.Name</span>
+                                                                <h4 class="listing-name verified"><a asp-controller="properties" asp-action="details" asp-route-id="@item.Id" class="prt-link-detail">@item.Name</a></h4>
+                                                            </div>
+                                                            <div class="listing-short-detail-flex">
+                                                                <h6 class="listing-card-info-price">$@item.Price</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="price-features-wrapper">
+                                                        <div class="list-fx-features">
+                                                            <div class="listing-card-info-icon">
+                                                                <div class="inc-fleat-icon"><img src="~/image/bed.svg" width="13" alt="" /></div>@item.BedroomsCount.CountName Beds
+                                                            </div>
+                                                            <div class="listing-card-info-icon">
+                                                                <div class="inc-fleat-icon"><img src="~/image/bathtub.svg" width="13" alt="" /></div>@item.BathroomCount.CountName
+                                                            </div>
+                                                            <div class="listing-card-info-icon">
+                                                                <div class="inc-fleat-icon"><img src="~/image/move.svg" width="13" alt="" /></div>@item.AreaKv sqft
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="listing-detail-footer">
+                                                        <div class="footer-first">
+                                                            <div class="foot-location"><img src="assets/img/pin.svg" width="18" alt="" />@item.Adress, @item.CityOfProperty.Name</div>
+                                                        </div>
+                                                        <div class="footer-flex">
+                                                            <a asp-controller="properties" asp-action="details" asp-route-id="@item.Id" class="prt-view">View</a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- End Single Property -->
+                                        }
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                                            <a asp-controller="properties" asp-action="index" class="btn btn-theme-light-2 rounded">Explore More Property</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <div class="tab-pane fade" id="month" role="tabpanel" aria-labelledby="month-tab">
+                                    <div class="row">
+                                        @foreach (var item in Model.Properties_monthrent)
+                                        {
+                                            <!-- Single Property -->
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="property-listing property-2">
+
+                                                    <div class="listing-img-wrapper">
+                                                        <div class="list-img-slide">
+                                                            <div class="clicks">
+                                                                <div><img src="~/Uploads/Images/@item.MainImage" class="img-fluid mx-auto" alt="" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="listing-detail-wrapper">
+                                                        <div class="listing-short-detail-wrap">
+                                                            <div class="listing-short-detail">
+                                                                <span class="property-type">@item.PropertyStatus.Name</span>
+                                                                <h4 class="listing-name verified"><a asp-controller="properties" asp-action="details" asp-route-id="@item.Id" class="prt-link-detail">@item.Name</a></h4>
+                                                            </div>
+                                                            <div class="listing-short-detail-flex">
+                                                                <h6 class="listing-card-info-price">$@item.Price</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="price-features-wrapper">
+                                                        <div class="list-fx-features">
+                                                            <div class="listing-card-info-icon">
+                                                                <div class="inc-fleat-icon"><img src="~/image/bed.svg" width="13" alt="" /></div>@item.BedroomsCount.CountName Beds
+                                                            </div>
+                                                            <div class="listing-card-info-icon">
+                                                                <div class="inc-fleat-icon"><img src="~/image/bathtub.svg" width="13" alt="" /></div>@item.BathroomCount.CountName
+                                                            </div>
+                                                            <div class="listing-card-info-icon">
+                                                                <div class="inc-fleat-icon"><img src="~/image/move.svg" width="13" alt="" /></div>@item.AreaKv sqft
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="listing-detail-footer">
+                                                        <div class="footer-first">
+                                                            <div class="foot-location"><img src="assets/img/pin.svg" width="18" alt="" />@item.Adress, @item.CityOfProperty.Name</div>
+                                                        </div>
+                                                        <div class="footer-flex">
+                                                            <a asp-controller="properties" asp-action="details" asp-route-id="@item.Id" class="prt-view">View</a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- End Single Property -->
+                                        }
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                                            <a asp-controller="properties" asp-action="index" class="btn btn-theme-light-2 rounded">Explore More Property</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- property Sidebar -->
+            <div class="col-lg-4 col-md-12 col-sm-12">
+
+                <div class="details-sidebar">
+
+                    <!-- Agent Detail -->
+                    <form class="sides-widget" asp-controller="home" asp-action="subscribe" method="post">
+                        <div class="sides-widget-header">
+                            <div class="sides-widget-details">
+                                <h4>Leave your message</h4>
+                                <span><i class="lni-phone-handset"></i>@Model.SingleAgent.Phone</span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="sides-widget-body simple-form">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input id="useremail" type="text" name="Email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone No.</label>
+                                <input id="userphone" type="text" name="Phone" class="form-control" placeholder="Your Phone"required>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea id="usermessage" name="Message" class="form-control" placeholder="Message..."></textarea>
+                            </div>
+                            <input type="hidden" name="agentId" value="@Model.SingleAgent.Id" />
+                            <button type="submit" id="custombtn1" class="btn btn-black btn-md rounded full-width">Send Message</button>
+                        </div>
+                    </form>
+
+                    <!-- Featured Property -->
+                    <div class="sidebar-widgets">
+
+                        <h4>Featured Property</h4>
+
+                        <div class="sidebar_featured_property">
+                            @foreach (var item in Model.LatestProps)
+                            {
+                                <div class="sides_list_property">
+                                    <div class="sides_list_property_thumb">
+                                        <img src="~/Uploads/Images/@item.MainImage" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="sides_list_property_detail">
+                                        <h4><a asp-controller="properties" asp-action="details" asp-route-id="@item.Id">@item.Name</a></h4>
+                                        <span><i class="ti-location-pin"></i>@item.CityOfProperty.Name</span>
+                                        <div class="lists_property_price">
+                                            <div class="lists_property_types">
+                                                <div class="@(item.PropertyStatusId==1||item.PropertyStatusId==3 ? "property_types_vlix" : "property_types_vlix sale")">@item.PropertyStatus.Name</div>
+                                            </div>
+                                            <div class="lists_property_price_value">
+                                                <h4>$@item.Price</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

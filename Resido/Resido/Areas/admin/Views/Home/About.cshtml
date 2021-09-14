@@ -1,0 +1,68 @@
+﻿@model VmBase
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <h1 class="h3 mb-2 text-gray-800">About Us</h1>
+
+            <div style="margin-top:20px" class="card shadow mb-4">
+
+                <div class="card-body">
+                    
+                    @if (Model.Abouts.Count() ==0)
+                    {
+                        <div style="margin-bottom:15px" class="col-lg-12">
+                            <a class="btn btn-primary" asp-area="admin" asp-controller="home" asp-action="createabout">Add</a>
+                        </div>
+                    }
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Image</th>
+
+                                    <th style="width:300px"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>@Model.About.Title</td>
+                                    <td>@Model.About.Desc</td>
+                                    <td>
+                                        <img src="~/Uploads/Images/@Model.About.Image" alt="image" width="90" />
+                                    </td>
+                                    <td>
+                                        <a style="margin-left:90px" class="btn btn-primary" asp-area="admin" asp-controller="home" asp-action="updateabout" asp-route-id="@Model.About.Id">Update</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

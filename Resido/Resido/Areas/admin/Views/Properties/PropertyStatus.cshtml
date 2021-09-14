@@ -1,0 +1,46 @@
+﻿@model VmBase
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <h1 class="h3 mb-2 text-gray-800">Property Status</h1>
+
+            <div style="margin-top:20px" class="card shadow mb-4">
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.Statuses)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+
+                                    </tr>
+                                 }
+                                <tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+

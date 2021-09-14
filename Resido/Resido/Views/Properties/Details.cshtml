@@ -1,0 +1,417 @@
+﻿@model VmAllProperties
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="featured_slick_gallery gray">
+    <div class="featured_slick_gallery-slide">
+        @foreach (var item in Model.PropertyImages)
+        {
+            <div class="featured_slick_padd"><a href="~/Uploads/Images/@item.Image" class="mfp-gallery"><img src="~/Uploads/Images/@item.Image" class="img-fluid mx-auto" alt="" /></a></div>
+
+        }
+    </div>
+</div>
+<section class="gray-simple rtl p-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-11 col-md-12">
+
+                <div class="property_block_wrap style-3">
+
+                    <div class="pbw-flex-1">
+                        <div class="pbw-flex-thumb">
+                            <img src="~/image/agency-1.png" class="img-fluid" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="pbw-flex">
+                        <div class="prt-detail-title-desc">
+                            <span class="prt-types sale">@Model.Property.PropertyStatus.Name</span>
+                            <h3>@Model.Property.Name</h3>
+                            <span><i class="lni-map-marker"></i> @Model.Property.Adress @Model.Property.CityOfProperty.Name, @Model.Property.State</span>
+                            <h3 class="prt-price-fix">$@Model.Property.Price</h3>
+                            <div class="list-fx-features">
+                                <div class="listing-card-info-icon">
+                                    <div class="inc-fleat-icon"><img src="~/image/bed.svg" width="13" alt=""></div>@Model.Property.BedroomsCount.CountName Beds
+                                </div>
+                                <div class="listing-card-info-icon">
+                                    <div class="inc-fleat-icon"><img src="~/image/bathtub.svg" width="13" alt=""></div>@Model.Property.BedroomsCount.CountName Bath
+                                </div>
+                                <div class="listing-card-info-icon">
+                                    <div class="inc-fleat-icon"><img src="~/image/move.svg" width="13" alt=""></div>@Model.Property.AreaKv sqft
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="gray-simple min">
+    <div class="container">
+        <div class="row">
+
+            <!-- property main detail -->
+            <div class="col-lg-8 col-md-12 col-sm-12">
+
+                <!-- Single Block Wrap -->
+                <div class="property_block_wrap style-2">
+
+                    <div class="property_block_wrap_header">
+                        <a data-bs-toggle="collapse" data-parent="#features" data-bs-target="#clOne" aria-controls="clOne" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Detail & Features</h4></a>
+                    </div>
+                    <div id="clOne" class="panel-collapse collapse show" aria-labelledby="clOne">
+                        <div class="block-body">
+                            <ul class="deatil_features">
+
+                                <li><strong>Rooms:</strong>@Model.Property.RoomsCount.CountName Room(s)</li>
+                                <li><strong>Bedrooms:</strong>@Model.Property.BedroomsCount.CountName Bedroom(s)</li>
+                                <li><strong>Bathrooms:</strong>@Model.Property.BathroomCount.CountName Bath</li>
+                                <li><strong>Areas:</strong>@Model.Property.AreaKv sq ft</li>
+                                <li><strong>Garage</strong>@Model.Property.GarageCount.CountName</li>
+                                <li><strong>Property Type:</strong>@Model.Property.PropertyType.Name</li>
+                                <li><strong>Building Age:</strong>@Model.Property.BuildingAge.Years Years</li>
+                                <li><strong>Status:</strong>@Model.Property.PropertyStatus.Name</li>
+                                @if (Model.Property.Beach == false)
+                                {
+                                    <li><strong>Beach:</strong>NO</li>
+                                }
+                                else
+                                {
+                                    <li><strong>Beach:</strong>YES</li>
+                                }
+                                @if (Model.Property.Balcony == false)
+                                {
+                                    <li><strong>Balcony:</strong>NO</li>
+                                }
+                                else
+                                {
+                                    <li><strong>Balcony:</strong>YES</li>
+                                }
+                                @if (Model.Property.Bedding == false)
+                                {
+                                    <li><strong>Bedding:</strong>NO</li>
+                                }
+                                else
+                                {
+                                    <li><strong>Bedding:</strong>YES</li>
+                                }
+                                @if (Model.Property.Dryer == false)
+                                {
+                                    <li><strong>Dryer:</strong>NO</li>
+                                }
+                                else
+                                {
+                                    <li><strong>Dryer:</strong>YES</li>
+                                }
+                                @if (Model.Property.Heating == false)
+                                {
+                                    <li><strong>Heating:</strong>NO</li>
+                                }
+                                else
+                                {
+                                    <li><strong>Heating:</strong>YES</li>
+                                }
+                                @if (Model.Property.Internet == false)
+                                {
+                                    <li><strong>Internet:</strong>NO</li>
+                                }
+                                else
+                                {
+                                    <li><strong>Internet:</strong>YES</li>
+                                }
+                                @if (Model.Property.Microwave == false)
+                                {
+                                    <li><strong>Microwave:</strong>NO</li>
+                                }
+                                else
+                                {
+                                    <li><strong>Microwave:</strong>YES</li>
+                                }
+                                @if (Model.Property.Parking == false)
+                                {
+                                    <li><strong>Parking:</strong>NO</li>
+                                }
+                                else
+                                {
+                                    <li><strong>Parking:</strong>YES</li>
+                                }
+                                @if (Model.Property.Supermarket == false)
+                                {
+                                    <li><strong>Supermarket:</strong>NO</li>
+                                }
+                                else
+                                {
+                                    <li><strong>Supermarket:</strong>YES</li>
+                                }
+                                @if (Model.Property.Terrace == false)
+                                {
+                                    <li><strong>Teracce:</strong>NO</li>
+                                }
+                                else
+                                {
+                                    <li><strong>Teracce:</strong>YES</li>
+                                }
+
+                                @foreach (var item in Model.Property.OtherFeatures)
+                                {
+                                    <li><strong>@item.Name:</strong> @item.Desc.ToUpper()</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Single Block Wrap -->
+                <div class="property_block_wrap style-2">
+
+                    <div class="property_block_wrap_header">
+                        <a data-bs-toggle="collapse" data-parent="#dsrp" data-bs-target="#clTwo" aria-controls="clTwo" href="javascript:void(0);" aria-expanded="true"><h4 class="property_block_title">Description</h4></a>
+                    </div>
+                    <div id="clTwo" class="panel-collapse collapse show">
+                        <div class="block-body">
+                            <p>@Model.Property.Description</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Block Wrap -->
+                <div class="property_block_wrap style-2">
+
+                    <div class="property_block_wrap_header">
+                        <a data-bs-toggle="collapse" data-parent="#amen" data-bs-target="#clThree" aria-controls="clThree" href="javascript:void(0);" aria-expanded="true"><h4 class="property_block_title">Ameneties</h4></a>
+                    </div>
+
+                    <div id="clThree" class="panel-collapse collapse show">
+                        <div class="block-body">
+                            <ul class="avl-features third color">
+                                @foreach (var item in Model.Property.AmenetiesProperties)
+                                 {
+                                    <li>@item.Title</li>
+
+                                 }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Block Wrap -->
+                <div class="property_block_wrap style-2">
+
+                    <div class="property_block_wrap_header">
+                        <a data-bs-toggle="collapse" data-parent="#vid" data-bs-target="#clFour" aria-controls="clFour" href="javascript:void(0);" aria-expanded="true" class="collapsed"><h4 class="property_block_title">Property video</h4></a>
+                    </div>
+
+                    <div id="clFour" class="panel-collapse collapse">
+                        <a target="_blank" href="@Model.Property.VideoLink">
+                        <img class="pro_img img-fluid w100" src="~/Uploads/Images/@Model.Property.MainImage" alt="7.jpg">
+                            <i style="margin-left:10px;font-size:15px" class="fas fa-play"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Single Reviews Block -->
+                <div class="property_block_wrap style-2">
+
+                    <div class="property_block_wrap_header">
+                        <a data-bs-toggle="collapse" data-parent="#rev" data-bs-target="#clEight" aria-controls="clEight" href="javascript:void(0);" aria-expanded="true"><h4 class="property_block_title">@Model.Property.Reviews.Count() Reviews</h4></a>
+                    </div>
+
+                    <div id="clEight" class="panel-collapse collapse show">
+                        <div class="block-body">
+                            <div class="author-review">
+                                <div class="comment-list">
+                                    <ul class="loading">
+                                        @foreach (var item in Model.Property.Reviews.Take(2))
+                                        {
+                                            <li class="article_comments_wrap">
+                                                <article>
+                                                    <div class="article_comments_thumb">
+                                                        <img src="~/Uploads/Images/@item.MyProfileForAgents.ProfileImage" alt="">
+                                                    </div>
+                                                    <div class="comment-details">
+                                                        <div class="comment-meta">
+                                                            <div class="comment-left-meta">
+                                                                <h4 class="author-name">@item.MyProfileForAgents.OwnerName</h4>
+                                                                <div class="comment-date">@item.AddedDate</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-text">
+                                                            <p>
+                                                                @item.Content
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            @foreach (var item in Model.Property.Reviews.Take(1))
+                            {
+                                <a data-nextpage="2" data-id="@item.PropertyId" href="#" class="reviews-checked theme-cl loadmore"><i class="fas fa-arrow-alt-circle-down mr-2"></i>See More Reviews</a>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Single Block Wrap -->
+                <div class="property_block_wrap style-2">
+
+                    <div class="property_block_wrap_header">
+                        <a data-bs-toggle="collapse" data-parent="#nearby" data-bs-target="#clNine" aria-controls="clNine" href="javascript:void(0);" aria-expanded="true"><h4 class="property_block_title">Nearby</h4></a>
+                    </div>
+
+                    <div id="clNine" class="panel-collapse collapse show">
+                        <div class="block-body">
+
+                            <!-- Schools -->
+                            <div class="nearby-wrap">
+                                <div class="nearby_header">
+                                    <div class="nearby_header_first">
+                                        <h5>Schools Around</h5>
+                                    </div>
+                                </div>
+                                <div class="neary_section_list">
+                                    @foreach (var item in Model.Property.SchoolsArounds)
+                                     {
+                                        <div class="neary_section">
+                                            <div class="neary_section_first">
+                                                <h4 class="nearby_place_title">@item.SchoolName<small>(@item.Miles mi)</small></h4>
+                                            </div>
+                                        </div>
+                                     }
+
+                                </div>
+                            </div>
+
+                            <!-- Hotel & Restaurant -->
+                            <div class="nearby-wrap">
+                                <div class="nearby_header">
+                                    <div class="nearby_header_first">
+                                        <h5>Food Around</h5>
+                                    </div>
+                                </div>
+                                <div class="neary_section_list">
+
+                                    @foreach (var item in Model.Property.FoodsArounds)
+                                     {
+                                        <div class="neary_section">
+                                            <div class="neary_section_first">
+                                                <h4 class="nearby_place_title">@item.RestaurantName<small>(@item.Miles mi)</small></h4>
+                                            </div>
+                                        </div>
+                                     }
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Single Write a Review -->
+                <div class="property_block_wrap style-2">
+
+                    <div class="property_block_wrap_header">
+                        <a data-bs-toggle="collapse" data-parent="#comment" data-bs-target="#clTen" aria-controls="clTen" href="javascript:void(0);" aria-expanded="true"><h4 class="property_block_title">Write a Review</h4></a>
+                    </div>
+
+                    <div id="clTen" class="panel-collapse collapse show">
+                        <div class="block-body">
+                            <form class="simple-form" asp-controller="review" asp-action="addreview" method="post">
+                                <div class="row">
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <textarea name="text" class="form-control ht-80" placeholder="Messages"></textarea>
+                                        </div>
+                                    </div>
+
+
+                                    <input type="hidden" name="propertyId" value="@Model.Property.Id" />
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <button class="btn btn-theme-light-2 rounded" type="submit">Submit Review</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- property Sidebar -->
+            <div class="col-lg-4 col-md-12 col-sm-12">
+
+                <div class="details-sidebar">
+
+                    <!-- Agent Detail -->
+                    <div class="sides-widget">
+                        <div class="sides-widget-header">
+                            <div class="agent-photo"><img src="assets/img/user-6.jpg" alt=""></div>
+                            <div class="sides-widget-details">
+                                <h4><a asp-controller="agents" asp-action="singleagency" asp-route-id="@Model.Property.MyProfileForAgentsId">Contact to Owner: @Model.Property.MyProfileForAgents.OwnerName</a></h4>
+                                <span><i class="lni-phone-handset"></i>@Model.Property.MyProfileForAgents.Phone</span>
+                                <span style="margin-left:10px"><i class="ti-email"></i>@Model.Property.MyProfileForAgents.Email</span>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Featured Property -->
+                    <div class="sidebar-widgets">
+
+                        <h4>Featured Property</h4>
+
+                        <div class="sidebar_featured_property">
+
+                            @foreach (var item in Model.Featured)
+                            {
+                                <div class="sides_list_property">
+                                    <div class="sides_list_property_thumb">
+                                        <img src="~/Uploads/Images/@item.MainImage" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="sides_list_property_detail">
+                                        <h4><a asp-controller="properties" asp-action="details" asp-route-id="@item.Id">@item.Name</a></h4>
+                                        <span><i class="ti-location-pin"></i>@item.CityOfProperty.Name</span>
+                                        <div class="lists_property_price">
+                                            <div class="lists_property_types">
+                                                <div class="@(item.PropertyStatusId==1||item.PropertyStatusId==3 ? "property_types_vlix" : "property_types_vlix sale")">@item.PropertyStatus.Name</div>
+                                            </div>
+                                            <div class="lists_property_price_value">
+                                                <h4>$@item.Price</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

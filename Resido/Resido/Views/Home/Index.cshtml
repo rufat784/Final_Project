@@ -1,0 +1,303 @@
+﻿@model VmHome
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="image-cover hero-banner" style="background: url(/image/banner-1.jpg) no-repeat;">
+    <div class="container">
+
+        <form asp-controller="properties" asp-action="index" method="GET" class="hero-search-wrap">
+            <div class="hero-search">
+                <h1>Find accessible flats to rent</h1>
+            </div>
+            <div class="hero-search-content side-form">
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="input-with-icon">
+                                <input type="text" name="searchData" class="form-control" placeholder="Search for a location">
+                                <img src="~/image/pin.svg" width="18" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Min Price</label>
+                            <input type="number" name="minPrice"  class="form-control" placeholder="Min Price">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Max Price</label>
+                            <input type="number" name="maxPrice" class="form-control" placeholder="Max Price">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Property Type</label>
+                            <select id="ptypes" class="form-control" name="typeId" asp-items="@(new SelectList(ViewBag.Type, "Id", "Name"))"></select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Bed Rooms</label>
+                            <select id="bedrooms" class="form-control" name="bedId" asp-items="@(new SelectList(ViewBag.Bedroom, "Id", "CountName"))"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Property Status</label>
+                            <select id="" class="form-control" name="statusId" asp-items="@(new SelectList(ViewBag.Status, "Id", "Name"))"></select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group filter_button">
+                <button type="submit" class="btn search-btn">Search Result</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<section>
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-10 text-center">
+                <div class="sec-heading center">
+                    <h2>How It Works?</h2>
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model.HowItWorks.Take(1))
+            {
+                <div class="col-lg-4 col-md-4">
+                    <div class="middle-icon-features-item">
+                        <div class="icon-features-wrap"><div class="middle-icon-large-features-box f-light-success"><i class="@item.Icon"></i></div></div>
+                        <div class="middle-icon-features-content">
+                            <h4>@item.Title</h4>
+                            <p>@item.Desc</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @foreach (var item in Model.HowItWorks.Skip(1).Take(1))
+            {
+                <div class="col-lg-4 col-md-4">
+                    <div class="middle-icon-features-item">
+                        <div class="icon-features-wrap"><div class="middle-icon-large-features-box f-light-warning"><i class="@item.Icon"></i></div></div>
+                        <div class="middle-icon-features-content">
+                            <h4>@item.Title</h4>
+                            <p>@item.Desc</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @foreach (var item in Model.HowItWorks.Skip(2).Take(1))
+            {
+                <div class="col-lg-4 col-md-4">
+                    <div class="middle-icon-features-item">
+                        <div class="icon-features-wrap"><div class="middle-icon-large-features-box f-light-blue"><i class="@item.Icon"></i></div></div>
+                        <div class="middle-icon-features-content">
+                            <h4>@item.Title</h4>
+                            <p>@item.Desc</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</section>
+<div class="clearfix"></div>
+<!-- ============================ Step How To Use End ====================== -->
+<!-- ================= Explore Property ================= -->
+<section class="bg-light">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-10 text-center">
+                <div class="sec-heading center">
+                    <h2>Explore Good places</h2>
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model.Properties)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="property-listing property-2">
+
+                        <div class="listing-img-wrapper">
+                            <div class="list-img-slide">
+                                <div class="click">                                 
+                                    <div><a asp-controller="properties" asp-action="details"asp-route-id="@item.Id"><img src="~/Uploads/Images/@item.MainImage" class="img-fluid mx-auto" alt="" /></a></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="listing-detail-wrapper">
+                            <div class="listing-short-detail-wrap">
+                                <div class="listing-short-detail">
+                                    <span class="property-type">@item.PropertyStatus.Name</span>
+                                    <h4 class="listing-name verified"><a asp-controller="properties" asp-action="details"asp-route-id="@item.Id" class="prt-link-detail">@item.Name</a></h4>
+                                </div>
+                                <div class="listing-short-detail-flex">
+                                    <h6 class="listing-card-info-price">$@item.Price</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="price-features-wrapper">
+                            <div class="list-fx-features">
+                                <div class="listing-card-info-icon">
+                                    <div class="inc-fleat-icon"><img src="~/image/bed.svg" width="13" alt="" /></div>@item.BedroomsCount.CountName Beds
+                                </div>
+                                <div class="listing-card-info-icon">
+                                    <div class="inc-fleat-icon"><img src="~/image/bathtub.svg" width="13" alt="" /></div>@item.BathroomCount.CountName Bath
+                                </div>
+                                <div class="listing-card-info-icon">
+                                    <div class="inc-fleat-icon"><img src="~/image/move.svg" width="13" alt="" /></div>@item.AreaKv sqft
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="listing-detail-footer">
+                            <div class="footer-first">
+                                <div class="foot-location"><img src="assets/img/pin.svg" width="18" alt="" />@item.Adress, @item.CityOfProperty.Name</div>
+                            </div>
+                            <div class="footer-flex">
+                                <a  asp-controller="properties" asp-action="details" asp-route-id="@item.Id" class="prt-view">View</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                <a asp-controller="properties" asp-action="index" class="btn btn-theme-light-2 rounded">More Properties</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ================================= Explore Property =============================== -->
+<!-- ============================ Property Location Start ================================== -->
+<section>
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-10 text-center">
+                <div class="sec-heading center">
+                    <h2>Find By Locations</h2>
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model.CityOfProperties)
+            {
+                <div class="col-lg-4 col-md-4">
+                    <div class="location-property-wrap">
+                        <div class="location-property-thumb">
+                            <a asp-controller="properties" asp-action="index" asp-route-locationId="@item.Id"><img src="~/Uploads/Images/@item.Image" class="img-fluid" alt="" /></a>
+                        </div>
+                        <div class="location-property-content">
+                            <div class="lp-content-flex">
+                                <h4 class="lp-content-title">@item.Name</h4>
+                                <span>@item.Properties.Count() Properties</span>
+                            </div>
+                            <div class="lp-content-right">
+                                <a asp-controller="properties" asp-action="index" asp-route-locationId="@item.Id" class="lp-property-view"><i class="ti-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                <a asp-controller="properties" asp-action="index" class="btn btn-theme-light-2 rounded">All Properties</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ============================ Property Location End ================================== -->
+<!-- ============================ Smart Testimonials ================================== -->
+<section class="bg-orange">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-10 text-center">
+                <div class="sec-heading center">
+                    <h2>Good Reviews by Customers</h2>
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-12 col-md-12">
+
+                <div class="smart-textimonials smart-center" id="smart-textimonials">
+                    @foreach (var item in Model.Reviews)
+                    {
+                        <div class="item">
+                            <div class="item-box">
+                                <div class="smart-tes-author">
+                                    <div class="st-author-box">
+                                        <div class="st-author-thumb">
+                                            <div class="quotes bg-blue"><i class="ti-quote-right"></i></div>
+                                            <img src="~/Uploads/Images/@item.MyProfileForAgents.ProfileImage" class="img-fluid" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="smart-tes-content">
+                                    <p>@item.Content</p>
+                                </div>
+
+                                <div class="st-author-info">
+                                    <h4 class="st-author-title">@item.MyProfileForAgents.OwnerName</h4>
+                                    <span class="st-author-subtitle">@item.MyProfileForAgents.YourPosition</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

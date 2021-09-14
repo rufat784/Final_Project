@@ -1,0 +1,201 @@
+﻿@model Property
+@{
+    ViewData["Title"] = "UpdateProperty";
+}
+<section class="gray-simple">
+
+    <div class="container">
+        <div class="row">
+            <!-- Submit Form -->
+            <form class="col-lg-12 col-md-12" asp-controller="properties" asp-action="updateproperty" method="post" enctype="multipart/form-data">
+                <div class="submit-page">
+                    <!-- Basic Information -->
+                    <div class="form-submit">
+                        <h3>Basic Information</h3>
+                        <div class="submit-section">
+                            <div class="row">
+
+                                <div class="form-group col-md-12">
+                                    <label>Property Title<span class="tip-topdata" data-tip="Property Title"><i class="ti-help"></i></span></label>
+                                    <input type="text" asp-for="@Model.Name" class="form-control" required>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Status</label>
+                                    <select id="status" class="form-control" asp-for="@Model.PropertyStatusId" asp-items="@(new SelectList(ViewBag.Status, "Id", "Name"))"></select>
+                                    <span asp-validation-for="@Model.PropertyStatusId" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Property Type</label>
+                                    <select id="status" class="form-control" asp-for="@Model.PropertyTypeId" asp-items="@(new SelectList(ViewBag.Type, "Id", "Name"))"></select>
+                                    <span asp-validation-for="@Model.PropertyTypeId" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Price</label>
+                                    <input asp-for="@Model.Price" type="text" class="form-control" placeholder="USD" required>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Area</label>
+                                    <input asp-for="@Model.AreaKv" type="text" class="form-control" required>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Bedrooms</label>
+                                    <select id="status" class="form-control" asp-for="@Model.BedroomsCountId" asp-items="@(new SelectList(ViewBag.Bedroom, "Id", "CountName"))"></select>
+                                    <span asp-validation-for="@Model.BedroomsCountId" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Bathrooms</label>
+                                    <select id="status" class="form-control" asp-for="@Model.BathroomCountId" asp-items="@(new SelectList(ViewBag.Bathroom, "Id", "CountName"))"></select>
+                                    <span asp-validation-for="@Model.BathroomCountId" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery -->
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input class="form-control" id="image" asp-for="@Model.ImageFile">
+                        <span class="text-danger" asp-validation-for="@Model.ImageFile"></span>
+                        <img src="~/Uploads/Images/@Model.MainImage" height="100" />
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-submit">
+                        <h3>Location</h3>
+                        <div class="submit-section">
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <label>Address</label>
+                                    <input asp-for="@Model.Adress" type="text" class="form-control" required>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>City</label>
+                                    <select id="status" class="form-control" asp-for="@Model.CityOfPropertyId" asp-items="@(new SelectList(ViewBag.City, "Id", "Name"))"></select>
+                                    <span asp-validation-for="@Model.CityOfPropertyId" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>State</label>
+                                    <input asp-for="@Model.State" type="text" class="form-control" required>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Zip Code</label>
+                                    <input asp-for="@Model.ZipCode" type="text" class="form-control" required>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Information -->
+                    <div class="form-submit">
+                        <h3>Detailed Information</h3>
+                        <div class="submit-section">
+                            <div class="row">
+
+                                <div class="form-group col-md-12">
+                                    <label>Description</label>
+                                    <textarea asp-for="@Model.Description" class="form-control h-120"></textarea>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Building Age (optional)</label>
+                                    <select id="status" class="form-control" asp-for="@Model.BuildingAgeId" asp-items="@(new SelectList(ViewBag.Age, "Id", "Years"))"></select>
+                                    <span asp-validation-for="@Model.BuildingAgeId" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Garage (optional)</label>
+                                    <select id="status" class="form-control" asp-for="@Model.GarageCountId" asp-items="@(new SelectList(ViewBag.Garage, "Id", "CountName"))"></select>
+                                    <span asp-validation-for="@Model.GarageCountId" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>Rooms (optional)</label>
+                                    <select id="status" class="form-control" asp-for="@Model.RoomsCountId" asp-items="@(new SelectList(ViewBag.rooms, "Id", "CountName"))"></select>
+                                    <span asp-validation-for="@Model.RoomsCountId" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label>Other Features (optional)</label>
+                                    <div class="o-features">
+                                        <ul class="no-ul-list third-row">
+                                            <li>
+                                                <input id="a-1" class="checkbox-custom" asp-for="@Model.AirCondition" type="checkbox">
+                                                <label for="a-1" class="checkbox-custom-label">Air Condition</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-2" class="checkbox-custom" asp-for="@Model.Bedding" type="checkbox">
+                                                <label for="a-2" class="checkbox-custom-label">Bedding</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-3" class="checkbox-custom" asp-for="@Model.Heating" type="checkbox">
+                                                <label for="a-3" class="checkbox-custom-label">Heating</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-4" class="checkbox-custom" asp-for="@Model.Internet" type="checkbox">
+                                                <label for="a-4" class="checkbox-custom-label">Internet</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-5" class="checkbox-custom" asp-for="@Model.Microwave" type="checkbox">
+                                                <label for="a-5" class="checkbox-custom-label">Microwave</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-6" class="checkbox-custom" asp-for="@Model.Smoking" type="checkbox">
+                                                <label for="a-6" class="checkbox-custom-label">Smoking Allow</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-7" class="checkbox-custom" asp-for="@Model.Terrace" type="checkbox">
+                                                <label for="a-7" class="checkbox-custom-label">Terrace</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-8" class="checkbox-custom" asp-for="@Model.Balcony" type="checkbox">
+                                                <label for="a-8" class="checkbox-custom-label">Balcony</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-9" class="checkbox-custom" asp-for="@Model.Dryer" type="checkbox">
+                                                <label for="a-9" class="checkbox-custom-label">Dryer</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-10" class="checkbox-custom" asp-for="@Model.Parking" type="checkbox">
+                                                <label for="a-10" class="checkbox-custom-label">Parking</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-11" class="checkbox-custom" asp-for="@Model.Beach" type="checkbox">
+                                                <label for="a-11" class="checkbox-custom-label">Beach</label>
+                                            </li>
+                                            <li>
+                                                <input id="a-12" class="checkbox-custom" asp-for="@Model.Supermarket" type="checkbox">
+                                                <label for="a-12" class="checkbox-custom-label">Supermarket</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <input type="hidden" name="MainImage" value="@Model.MainImage" />
+                    <div class="form-group col-lg-12 col-md-12">
+                        <button class="btn btn-theme-light-2 rounded" type="submit">Submit & Preview</button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</section>
+

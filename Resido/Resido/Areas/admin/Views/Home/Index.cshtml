@@ -1,0 +1,196 @@
+﻿@model VmBase
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    DateTime todayDate = DateTime.Today;
+
+
+}
+
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Zircos</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard </a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Dashboard</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-lg-6 col-xl-3">
+                    <div class="card widget-box-three">
+                        <div class="card-body">
+                            <div class="float-right mt-2">
+                                <i class="mdi mdi-chart-areaspline display-3 m-0"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p class="text-uppercase font-weight-medium text-truncate mb-2">Properties</p>
+                                <h2 class="mb-0"><span data-plugin="counterup">@Model.Properties.Count()</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+                <div class="col-lg-6 col-xl-3">
+                    <div class="card widget-box-three">
+                        <div class="card-body">
+                            <div class="float-right mt-2">
+                                <i class="mdi mdi-av-timer display-3 m-0"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p class="text-uppercase font-weight-medium text-truncate mb-2">Properties in Baku</p>
+                                <h2 class="mb-0"><span data-plugin="counterup">@Model.Properties.Where(p => p.CityOfProperty.Name == "Baku").Count()</span></h2>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+                <div class="col-lg-6 col-xl-3">
+                    <div class="card widget-box-three">
+                        <div class="card-body">
+                            <div class="float-right mt-2">
+                                <i class="mdi mdi-account-convert display-3 m-0"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p class="text-uppercase font-weight-medium text-truncate mb-2">User Today</p>
+                                <h2 class="mb-0"><span data-plugin="counterup">@Model.MyProfileForAgents.Where(t => t.AddedDAte.Date == DateTime.Today).Count()</span></h2>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col-lg-6 col-xl-3">
+                    <div class="card widget-box-three">
+                        <div class="card-body">
+                            <div class="float-right mt-2">
+                                <i class="mdi mdi-layers display-3 m-0"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p class="text-uppercase font-weight-medium text-truncate mb-2">User This Month</p>
+                                <h2 class="mb-0"><span data-plugin="counterup">@Model.MyProfileForAgents.Where(t => t.AddedDAte.Month == DateTime.Today.Month && t.AddedDAte.Year == DateTime.Today.Year).Count()</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card-box">
+                        <h4 class="header-title mb-4">Recent Agents and Agencies</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-centered m-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>User Name</th>
+                                        <th>Phone</th>
+                                        <th>Location</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.LatestUsers)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <img src="~/Uploads/Images/@item.ProfileImage" alt="image" width="70" />
+                                            </td>
+                                            <td>@item.OwnerName</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.State</td>
+                                            <td>@item.AddedDAte.ToString("dd.MM.yyyy")</td>                                                                                     
+                                        </tr>
+                                     }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- table-responsive -->
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!-- end col -->
+
+                <div class="col-xl-6">
+                    <div class="card-box">
+                        <h4 class="header-title mb-4">Recent Users</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-centered m-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>User Name</th>
+                                        <th>Phone</th>
+                                        <th>Location</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.LatestCustomers)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <img src="~/Uploads/Images/@item.ProfileImage" alt="image" width="70" />
+                                            </td>
+                                            <td>@item.OwnerName</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.State</td>
+                                            <td>@item.AddedDAte.ToString("dd.MM.yyyy")</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- table-responsive -->
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!-- end col -->
+
+            </div>
+            <!-- end row -->
+
+        </div>
+        <!-- end container-fluid -->
+
+    </div>
+    <!-- end content -->
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    2018 - 2020 &copy; Zircos theme by <a href="#">Coderthemes</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
+
+</div>
+
+
+

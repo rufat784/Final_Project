@@ -1,0 +1,58 @@
+﻿@model VmBase
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <h1 class="h3 mb-2 text-gray-800">Property Cities</h1>
+
+            <div style="margin-top:20px" class="card shadow mb-4">
+
+                <div class="card-body">
+                    <div style="margin-bottom:15px" class="col-lg-12">
+                        <a class="btn btn-primary" asp-area="admin" asp-controller="properties" asp-action="createcity">Add</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>City Name</th>
+                                    <th>City Image</th>
+                                    <th style="width:300px"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.City)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>
+                                            <img src="~/Uploads/Images/@item.Image" alt="image" width="50" />
+                                        </td>
+                                        <td>
+                                            <a style="margin-left:50px" class="btn btn-primary" asp-area="admin" asp-controller="properties" asp-action="updatecity" asp-route-id="@item.Id">Update</a>
+                                            <a style="margin-left:10px" class="btn btn-danger" asp-area="admin" asp-controller="properties" asp-action="deletecity" asp-route-id="@item.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                 }
+                                <tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+

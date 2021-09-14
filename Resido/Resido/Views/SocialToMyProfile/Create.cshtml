@@ -1,0 +1,32 @@
+﻿@model SocialToMyProf
+@{ ViewData["Title"] = "Create"; }
+
+<div style="margin-top:20px" class="container">
+    <div class="row">
+        <div style="margin:20px" class="col-6">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+            <form asp-controller="socialtomyprofile" asp-action="create" method="post" enctype="multipart/form-data">
+
+
+                <div class="form-group">
+                    <label for="title">Social</label>
+                    <select class="form-control" asp-for="@Model.SocialsMyProfileId" asp-items="@(new SelectList(ViewBag.Socials,"Id", "Icon"))">
+                    </select>
+                    <span asp-validation-for="@Model.SocialsMyProfileId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Link</label>
+                    <input type="text" class="form-control" id="title" asp-for="@Model.Link">
+                    <span asp-validation-for="@Model.Link" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

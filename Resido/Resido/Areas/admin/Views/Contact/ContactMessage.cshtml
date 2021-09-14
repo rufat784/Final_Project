@@ -1,0 +1,68 @@
+﻿@model VmBase
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <h1 class="h3 mb-2 text-gray-800">My Messages</h1>
+
+            <div style="margin-top:20px" class="card shadow mb-4">
+
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+
+                                    <th style="width:300px"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.Contacts)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.Subject</td>
+                                        <td>@item.Message</td>
+
+                                        <td>
+                                            <a style="margin-left:80px" class="btn btn-danger" asp-area="admin" asp-controller="contact" asp-action="deletecontactmessage" asp-route-id="@item.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                 }
+                                <tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

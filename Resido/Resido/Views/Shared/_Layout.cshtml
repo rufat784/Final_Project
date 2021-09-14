@@ -1,0 +1,299 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{ string agentCustomerString = HttpContextAccessor.HttpContext.Session.GetString("ValidAgentCustomer");
+    MyProfileForAgents agents = null;
+    if (agentCustomerString != null)
+    {
+        agents = JsonConvert.DeserializeObject<MyProfileForAgents>(agentCustomerString);
+
+    }
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Resido - Residence & Real Estate</title>
+
+    <link href="~/css/styles.css" rel="stylesheet">
+    <link href="~/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/mobilenav.css" media="(max-width: 1000px)">
+
+
+    <link href="~/css/colors.css" rel="stylesheet">
+
+</head>
+
+<body class="blue-skin">
+
+
+    <div id="preloader"><div class="preloader"><span></span><span></span></div></div>
+
+    <div id="main-wrapper">
+        <div class="header header-light head-shadow">
+            <div class="container">
+                <nav id="navigation" class="navigation navigation-landscape">
+                    <div class="nav-header">
+                        <a class="nav-brand" asp-controller="home" asp-action="index">
+                            <img src="~/image/logo.png" class="logo" alt="" />
+                        </a>
+                        <button style="padding-bottom:10px" class="nav-toggle"></button>
+                    </div>
+                    <div class="nav-menus-wrapper" style="transition-property: none;">
+                        <ul class="nav-menu">
+
+                            <li class="@(ViewBag.Page == "home" ? "active" : "")">
+                                <a asp-controller="home" asp-action="index">Home<span class="submenu-indicator"></span></a>
+                            </li>
+
+                            <li class="@(ViewBag.Page == "about" ? "active" : "")">
+                                <a asp-controller="about" asp-action="index">About Us<span class="submenu-indicator"></span></a>
+                            </li>
+
+                            <li class="@(ViewBag.Page == "properties" ? "active" : "")">
+                                <a asp-controller="properties" asp-action="index">Properties<span class="submenu-indicator"></span></a>
+                            </li>
+
+                            <li class="@(ViewBag.Page == "agents" ? "active" : "")">
+                                <a asp-controller="agents" asp-action="agents">Our Agents<span class="submenu-indicator"></span></a>
+                            </li>
+                            <li class="@(ViewBag.Page == "agencies" ? "active" : "")">
+                                <a asp-controller="agents" asp-action="agencies">Our Agencies<span class="submenu-indicator"></span></a>
+                            </li>
+
+                            <li class="@(ViewBag.Page == "contacts" ? "active" : "")">
+                                <a asp-controller="contacts" asp-action="index">Contact Us<span class="submenu-indicator"></span></a>
+                            </li>
+
+                        </ul>
+
+
+                        @if (agents != null && agents.RegistrationOptionSelectId !=3) 
+                        {
+                                 <ul class="nav-menu nav-menu-social align-to-right">
+                                      <li>
+                                          <a asp-controller="account" asp-action="updatemyprofile" class="font-14 whitecolor hover-default" title="@agents.OwnerName"><i class="fas fa-user mr-2"></i></a>
+                                      </li>
+                                      <li>
+                                          <a asp-controller="account" asp-action="logout"><img src="~/image/off.svg" class="mr-2" width="17" alt="" />Sign Out</a>
+                                      </li>
+                                      <li>
+                                           <a asp-controller="properties" asp-action="submitproperty" class="text-success"><img src="~/image/submit.svg" width="20" alt="" class="mr-2" />Add Property</a>
+                                      </li>
+                                 </ul> 
+                        }
+                        else if (agents != null && agents.RegistrationOptionSelectId == 3)
+                        {
+                                 <ul class="nav-menu nav-menu-social align-to-right">
+                                      <li>
+                                          <a asp-controller="account" asp-action="updatemyprofile" class="font-14 whitecolor hover-default" title="@agents.OwnerName"><i class="fas fa-user mr-2"></i></a>
+                                      </li>
+                                      <li>
+                                          <a asp-controller="account" asp-action="logout"><img src="~/image/off.svg" class="mr-2" width="17" alt="" />Sign Out</a>
+                                      </li>
+                                 </ul> 
+                        }
+                        else
+                        {
+                                <ul  class="nav-menu nav-menu-social align-to-right">
+                                    <li>
+                                         <a asp-controller="account" asp-action="signup">Sign Up<span class="submenu-indicator"></span></a>
+                                    </li>
+                                    <li class="add-listing">
+                                         <a asp-controller="account" asp-action="login">Sign In<span class="submenu-indicator"></span></a>
+                                    </li>
+                                </ul>
+                         }
+
+                    
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+
+
+
+
+
+        @RenderBody()
+
+
+
+
+        <section class="theme-bg call-to-act-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="call-to-act">
+                            <div class="call-to-act-head">
+                                <h3>Want to Become a Real Estate Agent?</h3>
+                                <span>We'll help you to grow your career and growth.</span>
+                            </div>
+                            <a asp-controller="account" asp-action="signup" class="btn btn-call-to-act">SignUp Today</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ Call To Action End ================================== -->
+        <!-- ============================ Footer Start ================================== -->
+        <footer class="dark-footer skin-dark-footer">
+            <div>
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="footer-widget">
+                                <img src="assets/img/logo-light.png" class="img-footer" alt="" />
+                                <div class="footer-add">
+                                    <p>Azerbaijan, Baku, Nobel pr. 147.</p>
+                                    <p>+994517778997</p>
+                                    <p>resido@gmail.com</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4">
+                            <div class="footer-widget">
+                                <h4 class="widget-title">Navigations</h4>
+                                <ul class="footer-menu">
+                                    <li><a asp-controller="home" asp-action="index">Home</a></li>
+                                    <li><a asp-controller="about" asp-action="index">About Us</a></li>
+                                    <li><a asp-controller="properties" asp-action="index">Properties</a></li>
+                                    <li><a asp-controller="contacts" asp-action="index">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-4">
+                            <div class="footer-widget">
+                                <h4 class="widget-title">The Highlights</h4>
+                                <ul class="footer-menu">
+                                    <li><a asp-controller="agents" asp-action="agents">Our Agents</a></li>
+                                    <li><a asp-controller="agents" asp-action="agencies">Our Agencies</a></li>
+                                    <li><a target="_blank" href="https://www.tripadvisor.ru/Restaurants-g293934-Baku_Absheron_Region.html">Restaurant</a></li>
+                                    <li><a target="_blank" href="https://www.likealocalguide.com/baku/nightclubs">Nightlife</a></li>                                
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <div class="footer-widget">
+                                <h4 class="widget-title">Registration</h4>
+                                <ul class="footer-menu">
+                                    <li><a asp-controller="account" asp-action="signup">Sign Up</a></li>
+                                    <li><a asp-controller="account" asp-action="login">Login</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-widget">
+                                <h4 class="widget-title">Download Apps</h4>
+                                <a href="https://play.google.com/store/apps;" class="other-store-link">
+                                    <div class="other-store-app">
+                                        <div class="os-app-icon">
+                                            <i class="lni-playstore theme-cl"></i>
+                                        </div>
+                                        <div class="os-app-caps">
+                                            Google Play
+                                            <span>Get It Now</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="https://apps.apple.com/us/app/apple-store/id375380948" class="other-store-link">
+                                    <div class="other-store-app">
+                                        <div class="os-app-icon">
+                                            <i class="lni-apple theme-cl"></i>
+                                        </div>
+                                        <div class="os-app-caps">
+                                            App Store
+                                            <span>Now it Available</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-6 col-md-6">
+                            <p class="mb-0">© 2021 Resido. Designd By <a href="https://themezhub.com/">Themez Hub</a> All Rights Reserved</p>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 text-right">
+                            <ul class="footer-bottom-social">
+                                <li><a href="https://www.facebook.com/residoproperty"><i class="ti-facebook"></i></a></li>
+                                <li><a href="https://www.twitter.com/residoproperty"><i class="ti-twitter"></i></a></li>
+                                <li><a href="https://www.instagram.com/residoproperty"><i class="ti-instagram"></i></a></li>
+                                <li><a href="https://www.linkedin.com/residoproperty"><i class="ti-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+
+
+    </div>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/rangeslider.js"></script>
+    <script src="~/js/select2.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/slick.js"></script>
+    <script src="~/js/slider-bg.js"></script>
+    <script src="~/js/lightbox.js"></script>
+    <script src="~/js/imagesloaded.js"></script>
+
+    <script src="~/js/custom.js"></script>
+    <script src="~/js/JavaScript.js"></script>
+
+    <script>
+            $("#custombtn").on("click", function (e) {
+                e.preventDefault();
+
+                let subscribe = {
+                    "Email": $('#useremail').val(),
+                    "Phone": $('#userphone').val(),
+                    "Message": $('#usermessage').val(),
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.ActionLink("Subscribe", "Home")",
+                    data: subscribe,
+                }).done(function (msg) {
+                    console.log(msg);
+                    $("input").val("");
+                }).fail(function (msg) {
+                    console.log(msg);
+                });
+
+            });
+
+    </script>
+
+</body>
+
+</html>

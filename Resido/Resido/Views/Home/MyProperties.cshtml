@@ -1,0 +1,61 @@
+﻿@model List<Property>
+@{ ViewData["Title"] = "Index"; }
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>My Properties</h1>
+        </div>
+        <div class="col-lg-12">
+            @*<a class="btn btn-primary" asp-area="admin" asp-controller="account" asp-action="create">Create</a>*@
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th>
+                           <a class="btn btn-dark" asp-controller="properties" asp-action="addpropertyimage"><i class="fas fa-image"></i> Add Images</a>
+                        </th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Added Date</th>
+
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 0;}
+                    @foreach (var item in Model)
+                     {
+                        i++;
+                         <tr>
+
+                          <th scope="row">@i</th>
+                          <td>
+                            <img src="~/Uploads/Images/@item.MainImage" alt="image" width="50" />
+                          </td>
+                          <td>@item.Name</td>
+                          <td>@item.AddedDate</td>
+                          <td>
+                              <a style="margin-left:100px"class="btn btn-primary" asp-controller="properties" asp-action="propertyimages"asp-route-id="@item.Id" ><i class="ti-layers"></i> Property Images</a>
+                              <a style="margin-left:10px" class="btn btn-primary" asp-controller="properties" asp-action="updateproperty" asp-route-id="@item.Id">Update</a>
+                              <a style="margin-left:10px" class="btn btn-danger" asp-controller="properties" asp-action="deleteproperty" asp-route-id="@item.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                          </td>
+                          </tr>
+                     }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

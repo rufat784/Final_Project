@@ -1,0 +1,76 @@
+﻿@model List<MyProfileForAgents>
+@{
+    ViewData["Title"] = "Agents";
+}
+
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+
+                <h2 class="ipt-title">Our All Agents</h2>
+                <span class="ipn-subtitle">Lists of our all expert agents</span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="gray-simple">
+
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="agents-grid">
+
+                        <div class="agents-grid-wrap">
+                            <div class="fr-grid-thumb">
+                                <a asp-controller="agents" asp-action="singleagent"asp-route-id="@item.Id">
+                                    <img src="~/Uploads/Images/@item.ProfileImage" class="img-fluid mx-auto" alt="" />
+                                </a>
+                            </div>
+
+                            <div class="fr-grid-deatil">
+                                <div class="fr-grid-deatil-flex">
+                                    <h5 class="fr-can-name"><a asp-controller="agents" asp-action="singleagent"asp-route-id="@item.Id">@item.OwnerName</a></h5>
+                                    <span class="agent-property">@item.Properties.Count() Properties</span>
+                                </div>
+                                <div class="fr-grid-deatil-flex-right">
+                                    <div class="agent-email"><a href="https://mail.google.com/mail/"><i class="ti-email"></i></a></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="fr-grid-info">
+                            <ul>
+                                <li><strong>Call:</strong>@item.Phone</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="fr-grid-footer">
+                            <div class="fr-grid-footer-flex">
+                                <span class="fr-position"><i class="lni-map-marker"></i>@item.Adress, @item.City</span>
+                            </div>
+                            <div class="fr-grid-footer-flex-right">
+                                <a asp-controller="agents" asp-action="singleagent" asp-route-id="@item.Id"class="prt-view" tabindex="0">View</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        @*<div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                <a href="listings-list-with-sidebar.html" class="btn btn-theme-light-2 rounded">Load More Agents</a>
+            </div>
+        </div>*@
+
+    </div>
+</section>

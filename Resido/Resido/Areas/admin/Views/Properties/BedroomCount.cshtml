@@ -1,0 +1,56 @@
+﻿@model VmBase
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+
+            <h1 class="h3 mb-2 text-gray-800">Bedroom Counts</h1>
+
+            <div style="margin-top:20px" class="card shadow mb-4">
+
+                <div class="card-body">
+                    <div style="margin-bottom:15px" class="col-lg-12">
+                        <a class="btn btn-primary" asp-area="admin" asp-controller="properties" asp-action="createbedroomcount">Add</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Bedroom Count</th>
+                                    <th style="width:300px"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.BedroomsCounts)
+                                {
+                                    <tr>
+                                        <td>@item.CountName Bedrooms</td>
+                                        <td>
+                                            <a style="margin-left:80px" class="btn btn-danger" asp-area="admin" asp-controller="properties" asp-action="deletebedroomcount" asp-route-id="@item.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                 }
+                                <tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

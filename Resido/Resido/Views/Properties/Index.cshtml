@@ -1,0 +1,412 @@
+﻿@model VmAllProperties
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+
+
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+
+                <h2 class="ipt-title">Property List</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="bg-light">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="filter_search_opt">
+                    <a href="javascript:void(0);" onclick="openFilterSearch()">Search Property<i class="ml-2 ti-menu"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="simple-sidebar sm-sidebar" id="filter_search" style="left:0;">
+
+                    <div class="search-sidebar_header">
+                        <h4 class="ssh_heading">Close Filter</h4>
+                        <button onclick="closeFilterSearch()" class="w3-bar-item w3-button w3-large"><i class="ti-close"></i></button>
+                    </div>
+
+                    <div class="sidebar-widgets">
+
+                        <form asp-controller="properties" asp-action="index" method="GET" class="search-inner p-0">
+
+                            <div class="filter-search-box">
+                                <div class="form-group">
+                                    <div class="input-with-icon">
+                                        <input  name="searchData" type="text" class="form-control" placeholder="Search by location">
+                                        <i class="ti-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter_wraps">
+
+                                <div class="single_search_boxed">
+                                    <div class="widget-boxed-header">
+                                        <h4>
+                                            <a href="#where" data-bs-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Where<span class="selected">City</span></a>
+                                        </h4>
+                                    </div>
+                                    <div class="widget-boxed-body collapse" id="where" data-parent="#where">
+                                        <div class="side-list no-border">
+                                            <div class="single_filter_card">
+                                                <div class="card-body pt-0">
+                                                    <div class="inner_widget_link">
+                                                        <ul class="no-ul-list filter-list">
+                                                            @foreach (var item in Model.CityOfProperties)
+                                                            {
+                                                                <li>
+                                                                    <a asp-controller="properties" asp-action="index" asp-route-cityId="@item.Id"
+                                                                       asp-route-typeId="@ViewBag.Filter["typeId"]"
+                                                                       asp-route-statusId="@ViewBag.Filter["statusId"]"
+                                                                       asp-route-bedId="@ViewBag.Filter["bedId"]"
+                                                                       asp-route-bathId="@ViewBag.Filter["bathId"]"
+                                                                       asp-route-ageId="@ViewBag.Filter["ageId"]"
+                                                                       asp-route-searchData="@ViewBag.Filter["searchData"]"
+                                                                       asp-route-garageId="@ViewBag.Filter["garageId"]">@item.Name</a>
+                                                                </li>
+                                                            }
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="single_search_boxed">
+                                    <div class="widget-boxed-header">
+                                        <h4>
+                                            <a href="#fptype" data-bs-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Property Types<span class="selected">Select Property Type</span></a>
+                                        </h4>
+
+                                    </div>
+                                    <div class="widget-boxed-body collapse" id="fptype" data-parent="#fptype">
+                                        <div class="side-list no-border">
+                                            <div class="single_filter_card">
+                                                <div class="card-body pt-0">
+                                                    <div class="inner_widget_link">
+                                                        <ul class="no-ul-list filter-list">
+                                                            @foreach (var item in Model.PropertyTypes)
+                                                            {
+                                                                <li>
+                                                                    <a asp-controller="properties" asp-action="index" asp-route-typeId="@item.Id"
+                                                                       asp-route-cityId="@ViewBag.Filter["cityId"]"
+                                                                       asp-route-statusId="@ViewBag.Filter["statusId"]"
+                                                                       asp-route-bedId="@ViewBag.Filter["bedId"]"
+                                                                       asp-route-bathId="@ViewBag.Filter["bathId"]"
+                                                                       asp-route-ageId="@ViewBag.Filter["ageId"]"
+                                                                       asp-route-searchData="@ViewBag.Filter["searchData"]"
+                                                                       asp-route-garageId="@ViewBag.Filter["garageId"]">@item.Name</a>
+                                                                </li>
+
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="single_search_boxed">
+                                    <div class="widget-boxed-header">
+                                        <h4>
+                                            <a href="#stat" data-bs-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Property Status<span class="selected">Select Status</span></a>
+                                        </h4>
+
+                                    </div>
+                                    <div class="widget-boxed-body collapse" id="stat" data-parent="#stat">
+                                        <div class="side-list no-border">
+                                            <div class="single_filter_card">
+                                                <div class="card-body pt-0">
+                                                    <div class="inner_widget_link">
+                                                        <ul class="no-ul-list filter-list">
+                                                            @foreach (var item in Model.PropertyStatuses)
+                                                            {
+                                                                <li>
+                                                                    <a asp-controller="properties" asp-action="index" asp-route-statusId="@item.Id"
+                                                                       asp-route-cityId="@ViewBag.Filter["cityId"]"
+                                                                       asp-route-typeId="@ViewBag.Filter["typeId"]"
+                                                                       asp-route-bedId="@ViewBag.Filter["bedId"]"
+                                                                       asp-route-bathId="@ViewBag.Filter["bathId"]"
+                                                                       asp-route-ageId="@ViewBag.Filter["ageId"]"
+                                                                       asp-route-searchData="@ViewBag.Filter["searchData"]"
+                                                                       asp-route-garageId="@ViewBag.Filter["garageId"]">@item.Name</a>
+                                                                </li>
+
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="single_search_boxed">
+                                    <div class="widget-boxed-header">
+                                        <h4>
+                                            <a href="#fbedrooms" data-bs-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Bedrooms<span class="selected">Bedroom Count</span></a>
+                                        </h4>
+                                    </div>
+                                    <div class="widget-boxed-body collapse" id="fbedrooms" data-parent="#fbedrooms">
+                                        <div class="side-list no-border">
+                                            <div class="single_filter_card">
+                                                <div class="card-body pt-0">
+                                                    <div class="inner_widget_link">
+                                                        <ul class="no-ul-list filter-list">
+                                                            @foreach (var item in Model.BedroomsCounts)
+                                                            {
+                                                                <li>
+                                                                    <a asp-controller="properties" asp-action="index" asp-route-bedId="@item.Id"
+                                                                       asp-route-cityId="@ViewBag.Filter["cityId"]"
+                                                                       asp-route-typeId="@ViewBag.Filter["typeId"]"
+                                                                       asp-route-statusId="@ViewBag.Filter["statusId"]"
+                                                                       asp-route-bathId="@ViewBag.Filter["bathId"]"
+                                                                       asp-route-ageId="@ViewBag.Filter["ageId"]"
+                                                                       asp-route-searchData="@ViewBag.Filter["searchData"]"
+                                                                       asp-route-garageId="@ViewBag.Filter["garageId"]">@item.CountName Bedrooms</a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="single_search_boxed">
+                                    <div class="widget-boxed-header">
+                                        <h4>
+                                            <a href="#bath" data-bs-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Bathrooms<span class="selected">Bathoom Count</span></a>
+                                        </h4>
+
+                                    </div>
+                                    <div class="widget-boxed-body collapse" id="bath" data-parent="#bath">
+                                        <div class="side-list no-border">
+                                            <div class="single_filter_card">
+                                                <div class="card-body pt-0">
+                                                    <div class="inner_widget_link">
+                                                        <ul class="no-ul-list filter-list">
+                                                            @foreach (var item in Model.BathroomCounts)
+                                                            {
+                                                                <li>
+                                                                    <a asp-controller="properties" asp-action="index" asp-route-bathId="@item.Id"
+                                                                       asp-route-cityId="@ViewBag.Filter["cityId"]"
+                                                                       asp-route-typeId="@ViewBag.Filter["typeId"]"
+                                                                       asp-route-statusId="@ViewBag.Filter["statusId"]"
+                                                                       asp-route-bedId="@ViewBag.Filter["bedId"]"
+                                                                       asp-route-ageId="@ViewBag.Filter["ageId"]"
+                                                                       asp-route-searchData="@ViewBag.Filter["searchData"]"
+                                                                       asp-route-garageId="@ViewBag.Filter["garageId"]">@item.CountName Bathrooms</a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="single_search_boxed">
+                                    <div class="widget-boxed-header">
+                                        <h4>
+                                            <a href="#age" data-bs-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Building Age<span class="selected">Select Building age</span></a>
+                                        </h4>
+                                    </div>
+                                    <div class="widget-boxed-body collapse" id="age" data-parent="#age">
+                                        <div class="side-list no-border">
+                                            <div class="single_filter_card">
+                                                <div class="card-body pt-0">
+                                                    <div class="inner_widget_link">
+                                                        <ul class="no-ul-list filter-list">
+                                                            @foreach (var item in Model.BuildingAges)
+                                                            {
+                                                                <li>
+                                                                    <a asp-controller="properties" asp-action="index" asp-route-ageId="@item.Id"
+                                                                       asp-route-cityId="@ViewBag.Filter["cityId"]"
+                                                                       asp-route-typeId="@ViewBag.Filter["typeId"]"
+                                                                       asp-route-statusId="@ViewBag.Filter["statusId"]"
+                                                                       asp-route-bedId="@ViewBag.Filter["bedId"]"
+                                                                       asp-route-bathId="@ViewBag.Filter["bathId"]"
+                                                                       asp-route-searchData="@ViewBag.Filter["searchData"]"
+                                                                       asp-route-garageId="@ViewBag.Filter["garageId"]">@item.Years Years</a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="single_search_boxed">
+                                    <div class="widget-boxed-header">
+                                        <h4>
+                                            <a href="#garage" data-bs-toggle="collapse" aria-expanded="false" role="button" class="collapsed">Garages<span class="selected">Garage Count</span></a>
+                                        </h4>
+
+                                    </div>
+                                    <div class="widget-boxed-body collapse" id="garage" data-parent="#garage">
+                                        <div class="side-list no-border">
+                                            <!-- Single Filter Card -->
+                                            <div class="single_filter_card">
+                                                <div class="card-body pt-0">
+                                                    <div class="inner_widget_link">
+                                                        <ul class="no-ul-list filter-list">
+                                                            @foreach (var item in Model.Garages)
+                                                            {
+                                                                <li>
+                                                                    <a asp-controller="properties" asp-action="index" asp-route-garageId="@item.Id"
+                                                                       asp-route-cityId="@ViewBag.Filter["cityId"]"
+                                                                       asp-route-typeId="@ViewBag.Filter["typeId"]"
+                                                                       asp-route-statusId="@ViewBag.Filter["statusId"]"
+                                                                       asp-route-bedId="@ViewBag.Filter["bedId"]"
+                                                                       asp-route-bathId="@ViewBag.Filter["bathId"]"
+                                                                       asp-route-searchData="@ViewBag.Filter["searchData"]"
+                                                                       asp-route-ageId="@ViewBag.Filter["ageId"]">@item.CountName</a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="cityId" value="@ViewBag.Filter["cityId"]">
+                            <input type="hidden" name="typeId" value="@ViewBag.Filter["typeId"]">
+                            <input type="hidden" name="statusId" value="@ViewBag.Filter["statusId"]">
+                            <input type="hidden" name="bedId" value="@ViewBag.Filter["bedId"]">
+                            <input type="hidden" name="bathId" value="@ViewBag.Filter["bathId"]">
+                            <input type="hidden" name="ageId" value="@ViewBag.Filter["ageId"]">
+                            <input type="hidden" name="garageId" value="@ViewBag.Filter["garageId"]">
+
+                        
+                        </form>
+                    </div>
+                </div>
+                <!-- Sidebar End -->
+
+            </div>
+
+            <div class="col-lg-8 col-md-12 col-sm-12">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="item-shorting-box">
+                            <div class="item-shorting clearfix">
+                                <div class="left-column pull-left"><h4 class="m-0">Found @Model.Properties.Count Results</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @foreach (var item in Model.Properties)
+                    {
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="property-listing property-2">
+                                <div class="listing-img-wrapper">
+                                    <div class="list-img-slide">
+                                        <div class="click">
+                                           <div><a asp-controller="properties" asp-action="details"asp-route-id="@item.Id"><img src="~/Uploads/Images/@item.MainImage" class="img-fluid mx-auto" alt="" /></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="listing-detail-wrapper">
+                                    <div class="listing-short-detail-wrap">
+                                        <div class="listing-short-detail">
+                                            <span class="property-type">@item.PropertyStatus.Name</span>
+                                            <h4 class="listing-name verified"><a asp-controller="properties" asp-action="details"asp-route-id="@item.Id" class="prt-link-detail">@item.Name</a></h4>
+                                        </div>
+                                        <div class="listing-short-detail-flex">
+                                            <h6 class="listing-card-info-price">$@item.Price</h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="price-features-wrapper">
+                                    <div class="list-fx-features">
+                                        <div class="listing-card-info-icon">
+                                            <div class="inc-fleat-icon"><img src="~/image/bed.svg" width="13" alt="" /></div>@item.BedroomsCount.CountName Beds
+                                        </div>
+                                        <div class="listing-card-info-icon">
+                                            <div class="inc-fleat-icon"><img src="~/image/bathtub.svg" width="13" alt="" /></div>@item.BathroomCount.CountName Bath
+                                        </div>
+                                        <div class="listing-card-info-icon">
+                                            <div class="inc-fleat-icon"><img src="~/image/move.svg" width="13" alt="" /></div>@item.AreaKv sqft
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="listing-detail-footer">
+                                    <div class="footer-first">
+                                        <div class="foot-location"><img src="assets/img/pin.svg" width="18" alt="" />@item.Adress, @item.CityOfProperty.Name</div>
+                                    </div>
+                                    <div class="footer-flex">
+                                        <a asp-controller="properties" asp-action="details" asp-route-id="@item.Id" class="prt-view">View</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Pagination -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <ul class="pagination p-center">
+
+                            <li class="page-item">
+                                <a class="page-link @(ViewBag.ActivePage == 1 ? "disabled" : "")" asp-controller="properties" asp-action="index" asp-all-route-data="@ViewBag.Filter"  asp-route-page="@(ViewBag.ActivePage == 1 ? 1 : ViewBag.ActivePage - 1)" aria-label="Previous">
+                                    <span class="ti-arrow-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+
+                           @for (int i = 1; i <= ViewBag.PageCount; i++)
+                            {
+                               <li class="page-item @(ViewBag.ActivePage == i ? "active" : "")"><a class="page-link" asp-controller="properties" asp-action="index" asp-all-route-data="@ViewBag.Filter"  asp-route-page="@i">@i</a></li>
+
+                            }
+
+
+                            <li class="page-item">
+                                <a class="page-link @(ViewBag.ActivePage == ViewBag.PageCount ? "disabled" : "")" asp-controller="properties" asp-action="index" asp-all-route-data="@ViewBag.Filter"  asp-route-page="@(ViewBag.ActivePage == ViewBag.PageCount ? ViewBag.PageCount : ViewBag.ActivePage + 1)" aria-label="Next">
+                                    <span class="ti-arrow-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>

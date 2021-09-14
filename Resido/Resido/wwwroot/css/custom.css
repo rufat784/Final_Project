@@ -1,0 +1,30 @@
+﻿.fileinputLabel{
+    width:100%;
+    height:40px;
+    background-color:#4e73df;
+    color:white;
+    text-align:center;
+    line-height:40px;
+    cursor:pointer;
+    border-radius:3px
+}
+
+.fileinput{
+    display:none;
+}
+
+.mainImage{
+    display:inline-block;
+    position:relative;
+}
+
+    .mainImage .updateImage {
+        position: absolute;
+        color: white;
+        background-color: darkblue;
+        width: 20px
+    }
+
+    .disabled{
+        pointer-events:none
+    }

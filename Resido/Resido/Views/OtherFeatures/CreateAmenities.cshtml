@@ -1,0 +1,36 @@
+﻿
+@model AmenetiesProperty
+@{ ViewData["Title"] = "Create"; }
+
+<div class="container">
+    <div class="row">
+        <div style="margin:20px" class="col-8">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+            <form asp-controller="otherfeatures" asp-action="createamenities" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Amenetie Title</label>
+                    <input type="text" class="form-control" id="title" asp-for="@Model.Title" required>
+                    <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="title">Property Name</label>
+                    <select class="form-control" asp-for="@Model.PropertyId" asp-items="@(new SelectList(ViewBag.props,"Id", "Name"))">
+                    </select>
+                    <span asp-validation-for="@Model.PropertyId" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

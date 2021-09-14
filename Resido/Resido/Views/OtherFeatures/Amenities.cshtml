@@ -1,0 +1,49 @@
+﻿
+@model List<AmenetiesProperty>
+@{ ViewData["Title"] = "Index"; }
+
+<div class="container-fluid">
+
+    <h1 style="margin:20px" class="h3 mb-2 text-gray-800">Amenities</h1>
+
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a class="btn btn-primary" asp-controller="otherfeatures" asp-action="createamenities">Add</a>
+        </div>
+
+        <div style="" class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Property Name</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                         {
+                            <tr>
+
+                            <td>@item.Title</td>
+                            <td>@item.Property.Name</td>
+                            <td>
+                                <a style="margin-left:170px" class="btn btn-primary" asp-controller="otherfeatures" asp-action="updateamenities" asp-route-id="@item.Id">Update</a>
+                                <a style="margin-left:10px" class="btn btn-danger" asp-controller="otherfeatures" asp-action="deleteamenities" asp-route-id="@item.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                            </tr>
+                         }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+
